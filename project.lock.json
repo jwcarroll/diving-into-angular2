@@ -13,7 +13,9 @@
       "Microsoft.AspNet.Tooling.Razor >= 1.0.0-beta4",
       "Microsoft.Framework.CodeGenerators.Mvc >= 1.0.0-beta4",
       "Microsoft.AspNet.Diagnostics >= 1.0.0-beta4",
-      "Microsoft.AspNet.Mvc.TagHelpers >= 6.0.0-beta4"
+      "Microsoft.AspNet.Mvc.TagHelpers >= 6.0.0-beta4",
+      "EntityFramework >= 7.0.0-beta4",
+      "EntityFramework.InMemory >= 7.0.0-beta4"
     ],
     "DNX,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": []
@@ -192,6 +194,52 @@
         "lib/dnxcore50/EntityFramework.Core.xml",
         "lib/net45/EntityFramework.Core.dll",
         "lib/net45/EntityFramework.Core.xml"
+      ]
+    },
+    "EntityFramework.InMemory/7.0.0-beta4": {
+      "serviceable": true,
+      "sha": "Y0fOn2f+o9n25Ij3GXmjCuLVG1hYGhf8srll7EVNAB7NfZCxkFj7XRVxpH8qoEdS1qgCnKQY/bG86vzDgt/lvQ==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "EntityFramework.Core": "7.0.0-beta4"
+          },
+          "frameworkAssemblies": [
+            "mscorlib",
+            "System",
+            "System.Core",
+            "Microsoft.CSharp"
+          ],
+          "runtimeAssemblies": [
+            "lib/dnx451/EntityFramework.InMemory.dll"
+          ],
+          "compileAssemblies": [
+            "lib/dnx451/EntityFramework.InMemory.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "EntityFramework.Core": "7.0.0-beta4"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/dnxcore50/EntityFramework.InMemory.dll"
+          ],
+          "compileAssemblies": [
+            "lib/dnxcore50/EntityFramework.InMemory.dll"
+          ]
+        }
+      },
+      "files": [
+        "EntityFramework.InMemory.7.0.0-beta4.nupkg",
+        "EntityFramework.InMemory.7.0.0-beta4.nupkg.sha512",
+        "EntityFramework.InMemory.nuspec",
+        "lib/dnx451/EntityFramework.InMemory.dll",
+        "lib/dnx451/EntityFramework.InMemory.xml",
+        "lib/dnxcore50/EntityFramework.InMemory.dll",
+        "lib/dnxcore50/EntityFramework.InMemory.xml",
+        "lib/net45/EntityFramework.InMemory.dll",
+        "lib/net45/EntityFramework.InMemory.xml"
       ]
     },
     "EntityFramework.Relational/7.0.0-beta4": {

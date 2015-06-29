@@ -1,4 +1,6 @@
 interface IContact {
-	name:string;
+	id:number;
+	firstName:string;
+	lastName:string;
 	twitter:string;
 }

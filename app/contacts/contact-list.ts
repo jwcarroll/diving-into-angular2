@@ -30,6 +30,6 @@ export class ContactList{
 	
 	navigateToContactDetails($event:any, contact:IContact): void{
 		$event.preventDefault();
-		this.router.parent.navigate(`/contact/${contact.name}`);
+		this.router.parent.navigate(`/contact/${contact.id}`);
 	}
 }
