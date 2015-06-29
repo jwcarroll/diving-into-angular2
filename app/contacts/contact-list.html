@@ -1,0 +1,15 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Twitter</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ng-for="#contact of contacts">
+			<td><a href (click)="navigateToContactDetails($event, contact)">{{contact.name}}</a></td>
+			<!--<td><a href router-link="contact" [router-params]="{contactId:contact.name}">{{contact.name}}</a></td>-->
+			<td>{{contact.twitter}}</td>
+		</tr>
+	</tbody>
+</table>
