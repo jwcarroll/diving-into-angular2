@@ -11,9 +11,11 @@
   "dependencies": {
     "angular2": "^2.0.0-alpha.26",
     "bootstrap": "^3.3.5",
+    "hover.css": "^2.0.2",
     "lodash": "^3.9.3"
   },
   "devDependencies": {
+    "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-tsc": "^0.10.1",
     "gulp-typescript": "^2.7.6",

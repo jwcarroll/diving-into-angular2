@@ -20,5 +20,22 @@ namespace DivingIntoAngular.Controllers
                 return await context.Contacts.ToListAsync();
             }
         }
+        
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetContact(Int32 id){
+            Contact existingContact = null;
+            
+            using(var context = new ContactListContext()){
+                 existingContact = await context.Contacts
+                    .SingleOrDefaultAsync(c => c.Id == id);
+            }
+            
+            if (existingContact == null)
+            {
+                return HttpNotFound();
+            }
+            
+            return new ObjectResult(existingContact);
+        }
     }
 }

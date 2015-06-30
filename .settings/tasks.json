@@ -13,6 +13,11 @@
     },{
         "taskName": "scripts",
         "isBuildCommand": true,
+        "showOutput": "silent",
+        "problemMatcher": ["$gulp-tsc", "$tsc"]
+    },{
+        "taskName": "watch",
+        "isBuildCommand": true,
         "showOutput": "always",
         "problemMatcher": ["$gulp-tsc", "$tsc"]
     }]

@@ -1,7 +1,7 @@
 /// <reference path="../../typings/tsd.d.ts" />
 /// <reference path="models.d.ts" />
 
-import {Component, View, NgFor} from 'angular2/angular2';
+import {Component, View, NgFor, CSSClass} from 'angular2/angular2';
 import {Router, routerDirectives} from 'angular2/router';
 import {ContactsService} from './contacts-service';
 
@@ -10,7 +10,7 @@ import {ContactsService} from './contacts-service';
 })
 @View({
 	templateUrl:'app/contacts/contact-list.html',
-	directives:[NgFor, routerDirectives]
+	directives:[NgFor, CSSClass, routerDirectives]
 })
 export class ContactList{
 	contacts: IContact[];
@@ -30,6 +30,6 @@ export class ContactList{
 	
 	navigateToContactDetails($event:any, contact:IContact): void{
 		$event.preventDefault();
-		this.router.parent.navigate(`/contact/${contact.id}`);
+		this.router.parent.navigate(`/contacts/${contact.id}`);
 	}
 }

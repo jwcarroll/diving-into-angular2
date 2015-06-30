@@ -15,8 +15,9 @@ import {StatusBoardFloating} from './status-board/status-board-floating';
 	directives:[routerDirectives]
 })
 @RouteConfig([
-	{path: '/',	as:'contacts', component:ContactList},
-	{path: '/contact/:contactId',	as:'contact', component:ContactDetail},
+	{path: '/',	redirectTo:'/contacts'},
+	{path: '/contacts/',	as:'contacts', component:ContactList},
+	{path: '/contacts/:contactId',	as:'contact-detail', component:ContactDetail},
 	{path: '/status-board', as:'status-board',	component:StatusBoard},
 	{path: '/status-board-floating', as:'status-board-floating',	component:StatusBoardFloating}
 ])

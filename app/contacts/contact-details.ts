@@ -5,16 +5,17 @@ import {Component, View, NgFor} from 'angular2/angular2';
 import {RouteParams, RouteConfig} from 'angular2/router';
 import {ContactsService} from './contacts-service';
 import * as _ from 'lodash';
+import * as Rx from 'rx';
 
 @Component({
 	selector:'contact'
 })
 @View({
-	template:'<h1>Showing Contact Info For: {{contactId}}'
+	templateUrl:'app/contacts/contact-details.html'
 })
-export class ContactDetail{
-	contact: IContact;
-	contactId: string;
+export class ContactDetail{	
+	private _contact;
+	private _originalContact:IContact;
 	
 	constructor(
 		private contactsService:ContactsService, 
@@ -24,6 +25,35 @@ export class ContactDetail{
 	}
 	
 	init(){
-		this.contactId = this.routeParams.params['contactId'];
+		var contactId = this.routeParams.params['contactId'];
+		this.contact = <IContact>{};
+		this.getContact(contactId)
+			.subscribe(contact => {
+				this.contact = contact;
+			});
+	}
+	
+	private getContact(contactId:string|number){
+		return Rx.Observable.create<IContact>(obs => {
+			if(_.isUndefined(contactId)){
+				obs.onNext(<IContact>{});
+				obs.onCompleted();
+				return;
+			}
+			
+			this.contactsService.getContact(contactId)
+				.subscribe(c => {
+					obs.onNext(c);
+					obs.onCompleted();
+				});
+		});
+	}
+	
+	get contact():IContact{
+		return this._contact;
+	}
+	set contact(newContact:IContact){
+		this._contact = newContact;
+		this._originalContact = _.clone(newContact);
 	}
 }

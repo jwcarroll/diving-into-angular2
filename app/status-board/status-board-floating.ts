@@ -35,7 +35,8 @@ var requestAnimationFrame = window.requestAnimationFrame || window['mozRequestAn
 	selector: 'status-board',
 	lifecycle: [onDestroy],
 	host: {
-		'(document:^keyup)': 'onKeyUp($event)'
+		'(document:^keyup)': 'onKeyUp($event)',
+		'(document:^keydown)': 'onKeyDown($event)'
 	}
 })
 @View({
@@ -120,12 +121,24 @@ export class StatusBoardFloating {
 	}
 
 	incrementNumItems(increment:number){
-		this.updateNumItems(this.config.numItems + increment);
+		var newNum = this.config.numItems + increment;
+		
+		if(newNum < 1){
+			newNum = 1;
+		}
+		
+		this.updateNumItems(newNum);
 	}
 
 	updateNumItems(numItems:number){
 		this.config.numItems = numItems || 1;
 		this.initStatusBoard();
+	}
+
+	onKeyDown(event){
+		if(event.which !== KeyMapping.Space){
+			this.onKeyUp(event);
+		}
 	}
 
 	onKeyUp(event){

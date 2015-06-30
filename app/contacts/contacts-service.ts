@@ -11,4 +11,9 @@ export class ContactsService {
 		return this.http.get('/api/contacts')
 			.map<IContact[]>(res => <any>res.json());
 	}
+	
+	getContact(contactId:string|number){
+		return this.http.get(`/api/contacts/${contactId}`)
+			.map<IContact>(res => <any>res.json());
+	}
 }
