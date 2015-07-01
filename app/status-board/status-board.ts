@@ -34,7 +34,7 @@ var statuses = [
 
 var requestAnimationFrame = window.requestAnimationFrame || window['mozRequestAnimationFrame'] ||
     window['webkitRequestAnimationFrame'] || window.msRequestAnimationFrame;
-
+	
 @Component({
 	selector: 'status-board'
 })
@@ -47,7 +47,7 @@ export class StatusBoard {
 	updateBoardCallback: () => void;
 	statusUpdates: number = 0;
 	timings:ITimings = {};
-
+	
 	private _maxStatusUpdates: number = dimensions.cols * dimensions.rows;
 
 	constructor() {

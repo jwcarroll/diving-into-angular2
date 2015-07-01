@@ -29,7 +29,7 @@ export class ContactList{
 	}
 	
 	navigateToContactDetails($event:any, contact:IContact): void{
-		$event.preventDefault();
-		this.router.parent.navigate(`/contacts/${contact.id}`);
+		$event.preventDefault();	
+		this.router.parent.navigate(`/contacts/${(contact || {id:'new'}).id}`);
 	}
 }

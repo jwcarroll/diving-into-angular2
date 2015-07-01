@@ -1,8 +1,8 @@
 /// <reference path="../../typings/tsd.d.ts" />
 /// <reference path="models.d.ts" />
 
-import {Component, View, NgFor} from 'angular2/angular2';
-import {RouteParams, RouteConfig} from 'angular2/router';
+import {Component, View, formDirectives} from 'angular2/angular2';
+import {RouteParams, RouteConfig, Router} from 'angular2/router';
 import {ContactsService} from './contacts-service';
 import * as _ from 'lodash';
 import * as Rx from 'rx';
@@ -11,7 +11,8 @@ import * as Rx from 'rx';
 	selector:'contact'
 })
 @View({
-	templateUrl:'app/contacts/contact-details.html'
+	templateUrl:'app/contacts/contact-details.html',
+	directives:[formDirectives]
 })
 export class ContactDetail{	
 	private _contact;
@@ -19,7 +20,8 @@ export class ContactDetail{
 	
 	constructor(
 		private contactsService:ContactsService, 
-		private routeParams:RouteParams){
+		private routeParams:RouteParams,
+		private router:Router){
 		
 		this.init();
 	}
@@ -31,6 +33,25 @@ export class ContactDetail{
 			.subscribe(contact => {
 				this.contact = contact;
 			});
+	}
+	
+	cancelChanges(){
+		this.contact = this._originalContact;
+	}
+	
+	saveContact(){
+		this.contactsService.saveContact(this.contact)
+			.subscribe(c => {
+				this.router.parent.navigate("/contacts");
+			});
+	}
+	
+	get contact():IContact{
+		return this._contact;
+	}
+	set contact(newContact:IContact){
+		this._contact = newContact;
+		this._originalContact = _.clone(newContact);
 	}
 	
 	private getContact(contactId:string|number){
@@ -47,13 +68,5 @@ export class ContactDetail{
 					obs.onCompleted();
 				});
 		});
-	}
-	
-	get contact():IContact{
-		return this._contact;
-	}
-	set contact(newContact:IContact){
-		this._contact = newContact;
-		this._originalContact = _.clone(newContact);
 	}
 }

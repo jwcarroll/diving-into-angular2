@@ -13,15 +13,21 @@ using Microsoft.Framework.Logging.Console;
 using Microsoft.Framework.Runtime;
 using DivingIntoAngular.Models;
 using Newtonsoft.Json.Serialization;
+using Microsoft.Data.Entity;
 
 namespace DivingIntoAngular
 {
+    public class TextToJsonInputFormatter: JsonInputFormatter {
+        
+    }
+    
     public class Startup
     {
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
+            services
+            .AddMvc()
             .Configure<MvcOptions>(options => {
                 options.OutputFormatters
                            .Where(f => f.Instance is JsonOutputFormatter)
@@ -29,26 +35,29 @@ namespace DivingIntoAngular
                            .First()
                            .SerializerSettings
                            .ContractResolver = new CamelCasePropertyNamesContractResolver();
+                          
+                
             });
 
-            services.InitializeContactList();
+            services.AddEntityFramework()
+				.AddInMemoryStore()
+				.AddDbContext<ContactListContext>();
+            
+            services.AddLogging();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(minLevel: LogLevel.Verbose);
-
+            ContactListInitializer.InitializeSampleData(app.ApplicationServices);
+            
+            loggerFactory.AddConsole(LogLevel.Information);
+            
             app.UseErrorPage(ErrorPageOptions.ShowAll);
 
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "simpleContactList",
-                    template: "simple-contact-list",
-                    defaults: new { controller = "Home", action = "SimpleContactList" }
-                );
                 routes.MapRoute(
                     name: "default",
                     template: "{*path}",

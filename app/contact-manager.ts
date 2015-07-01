@@ -1,4 +1,4 @@
-import {Component, View, bootstrap} from 'angular2/angular2';
+import {Component, View, bootstrap, formInjectables} from 'angular2/angular2';
 import {routerDirectives, routerInjectables, RouteConfig, Router} from 'angular2/router';
 import {Http, httpInjectables} from 'angular2/http';
 import {ContactList} from './contacts/contact-list';
@@ -32,6 +32,7 @@ class ContactManager{
 bootstrap(
 	ContactManager,
 	[
+		formInjectables,
 		routerInjectables,
 		httpInjectables,
 		ContactsService
