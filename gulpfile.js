@@ -15,7 +15,14 @@ var gulp = require('gulp'),
   releaseDir = project.webroot + '/app';
 
 // The default task (called when you run `gulp` from CLI)
-gulp.task('default', ['clean', 'copy-deps', 'copy-templates', 'scripts']);
+gulp.task('default', [
+  'clean',
+  'copy-deps',
+  'copy-templates',
+  'copy-libs',
+  'copy-content',
+  'scripts'
+]);
 
 gulp.task('serve', ['default', 'watch', 'dnx-run']);
 
@@ -35,6 +42,16 @@ gulp.task('copy-deps', function () {
 
   return gulp.src(modulesToCopy, { base: 'node_modules' })
     .pipe(gulp.dest(releaseDir + '/lib/'));
+});
+
+gulp.task('copy-libs', function () {
+  return gulp.src("./lib/**/*")
+    .pipe(gulp.dest(releaseDir + '/lib/'));
+});
+
+gulp.task('copy-content', function () {
+  return gulp.src("./content/**/*")
+    .pipe(gulp.dest(releaseDir + '/content/'));
 });
 
 gulp.task('copy-templates', function () {

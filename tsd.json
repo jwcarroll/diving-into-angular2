@@ -8,9 +8,6 @@
     "es6-promise/es6-promise.d.ts": {
       "commit": "ac3a1f059f655059484d6aa5ba1f0f85908ae06c"
     },
-    "angular2/angular2.d.ts": {
-      "commit": "ac3a1f059f655059484d6aa5ba1f0f85908ae06c"
-    },
     "rx/rx.d.ts": {
       "commit": "ac3a1f059f655059484d6aa5ba1f0f85908ae06c"
     },
@@ -19,6 +16,9 @@
     },
     "lodash/lodash.d.ts": {
       "commit": "ac3a1f059f655059484d6aa5ba1f0f85908ae06c"
+    },
+    "whatwg-fetch/whatwg-fetch.d.ts": {
+      "commit": "c7b1128cc9a8f5797bade826e7632b36b06a856c"
     }
   }
 }

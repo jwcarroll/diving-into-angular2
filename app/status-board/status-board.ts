@@ -15,13 +15,13 @@ interface ITimings{
 }
 
 var dimensions = {
-	rows: 25,
-	cols: 60
+	rows: 20,
+	cols: 30
 };
 
 var timeouts = {
-	min:200,
-	max:1000
+	min:100,
+	max:500
 }
 
 var statuses = [

@@ -47,7 +47,7 @@ namespace DivingIntoAngular.Controllers
         }
 
         [HttpPost()]
-        public async Task<IActionResult> AddContact(Contact contact)
+        public async Task<IActionResult> AddContact([FromBody] Contact contact)
         {
             _logger.LogInformation(JsonConvert.SerializeObject(contact));
             
@@ -75,7 +75,7 @@ namespace DivingIntoAngular.Controllers
             
             Mapper.Map(contact, existingContact);
             
-            _logger.LogDebug(JsonConvert.SerializeObject(new{contact, existingContact}));
+            _logger.LogInformation(JsonConvert.SerializeObject(new{contact, existingContact}));
             
             await _contactList.SaveChangesAsync();
             

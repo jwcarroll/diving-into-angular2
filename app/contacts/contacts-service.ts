@@ -6,30 +6,23 @@ import {Inject, Http, RequestMethods, BaseRequestOptions, Headers} from 'angular
 
 export class ContactsService {
 	constructor(
-		@Inject(Http) private http: Http,
-		@Inject(BaseRequestOptions) private baseRequestOptions: BaseRequestOptions) { }
+		@Inject(Http) private http: Http) { }
 
-	getAll() {
-		return this.http.get('/api/contacts')
-			.map(res => <IContact[]>res.json());
+	getAll(): Rx.Observable<IContact[]> {
+		return this.http.get('/api/contacts').toRx();
 	}
 
-	getContact(contactId: string|number) {
-		return this.http.get(`/api/contacts/${contactId}`)
-			.map(res => <IContact>res.json());
+	getContact(contactId: string|number) : Rx.Observable<IContact> {
+		return this.http.get(`/api/contacts/${contactId}`).toRx();
 	}
 
-	saveContact(contact: IContact) {
-		var headers = new Headers();
-		headers.append('Content-Type', 'application/json; charset=utf-8');
-		
-		var requestOptions = this.baseRequestOptions.merge(<any>{
+	saveContact(contact: IContact) : Rx.Observable<IContact> {
+		var requestOptions = <any>{
 			method: _.isUndefined(contact.id) ? RequestMethods.POST : RequestMethods.PUT,
 			body: JSON.stringify(contact),
-			headers: headers
-		});
+			headers: {'Content-Type': 'application/json; charset=utf-8'}
+		};
 
-		return this.http.request(`/api/contacts/${contact.id || ''}`, requestOptions)
-			.map<IContact>(res => <any>res.json());
+		return this.http.request(`/api/contacts/${contact.id || ''}`, requestOptions).toRx();
 	}
 }

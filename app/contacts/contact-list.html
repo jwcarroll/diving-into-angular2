@@ -12,7 +12,7 @@
 					<td>
 						<a href (click)="navigateToContactDetails($event, contact)">{{contact.lastName}}, {{contact.firstName}}</a>
 					</td>
-					<!--<td><a href router-link="contact" [router-params]="{contactId:contact.name}">{{contact.name}}</a></td>-->
+					<!--<td><a href [router-link]="['/contact-detail',{contactId:contact.id}]">{{contact.lastName}}, {{contact.firstName}}</a></td>-->
 					<td>{{contact.twitter}}</td>
 				</tr>
 				<tr class="warning">

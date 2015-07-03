@@ -14,13 +14,10 @@ using Microsoft.Framework.Runtime;
 using DivingIntoAngular.Models;
 using Newtonsoft.Json.Serialization;
 using Microsoft.Data.Entity;
+using AutoMapper;
 
 namespace DivingIntoAngular
 {
-    public class TextToJsonInputFormatter: JsonInputFormatter {
-        
-    }
-    
     public class Startup
     {
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
@@ -44,6 +41,8 @@ namespace DivingIntoAngular
 				.AddDbContext<ContactListContext>();
             
             services.AddLogging();
+            
+            Mapper.CreateMap<Contact, Contact>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

@@ -50,8 +50,8 @@ export class StatusBoardFloating {
 	config: IBoardConfig = {
 		numItems: 300,
 		velocity: {
-			x: { min: -200, max: 200 },
-			y: { min: -200, max: 200 }
+			x: { min: -500, max: 500 },
+			y: { min: -500, max: 500 }
 		},
 		bounds: {
 			x: { min: 0, max: 900 },
