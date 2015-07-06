@@ -27,10 +27,8 @@ gulp.task('default', [
 gulp.task('serve', ['default', 'watch', 'dnx-run']);
 
 gulp.task('watch', function () {
-  var watcher = gulp.watch(app + '/**/*', ['scripts', 'copy-templates']);
-  watcher.on('change', function (event) {
-    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-  });
+  gulp.watch(app + '/**/*', ['scripts', 'copy-templates']);
+  gulp.watch('./content/**/*', ['copy-content']);
 });
 
 gulp.task('dnx-run', dnx('kestrel'));

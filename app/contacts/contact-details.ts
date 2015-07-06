@@ -1,9 +1,10 @@
 /// <reference path="../../typings/tsd.d.ts" />
 /// <reference path="models.d.ts" />
 
-import {Component, View, formDirectives} from 'angular2/angular2';
+import {Component, View, formDirectives, CSSClass} from 'angular2/angular2';
 import {RouteParams, RouteConfig, Router} from 'angular2/router';
 import {ContactsService} from './contacts-service';
+import {BootstrapValidationIndicator} from '../common/bootstrap-validation-indicator';
 import * as _ from 'lodash';
 import * as Rx from 'rx';
 
@@ -12,7 +13,7 @@ import * as Rx from 'rx';
 })
 @View({
 	templateUrl:'app/contacts/contact-details.html',
-	directives:[formDirectives]
+	directives:[formDirectives, CSSClass, BootstrapValidationIndicator]
 })
 export class ContactDetail{	
 	private _contact;

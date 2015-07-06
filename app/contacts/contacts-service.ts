@@ -25,4 +25,8 @@ export class ContactsService {
 
 		return this.http.request(`/api/contacts/${contact.id || ''}`, requestOptions).toRx();
 	}
+	
+	deleteContact(contactId: string|number) : Rx.Observable<IContact> {
+		return this.http.delete(`/api/contacts/${contactId}`).toRx();
+	}
 }

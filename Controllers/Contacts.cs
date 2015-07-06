@@ -82,9 +82,23 @@ namespace DivingIntoAngular.Controllers
             return new ObjectResult(existingContact);
         }
         
-        //  [HttpDeleteAttribute("{contactId:int}")]
-        //  public async Task<IActionResult> DeleteContact(Int32 contactId){
+        [HttpDeleteAttribute("{contactId:int}")]
+        public async Task<IActionResult> DeleteContact(Int32 contactId){
+            Contact existingContact = null;
+
+            existingContact = await _contactList.Contacts
+               .SingleOrDefaultAsync(c => c.Id == contactId);
+
+            if (existingContact == null)
+            {
+                return new ObjectResult(null);
+            }
             
-        //  }
+            _contactList.Contacts.Remove(existingContact);
+            
+            await _contactList.SaveChangesAsync();
+            
+            return new ObjectResult(existingContact);
+        }
     }
 }

@@ -35,7 +35,7 @@ export class FetchHttpAdapter implements Http {
         }
 
         promise.then(res => res.json())
-            .then(json => { 
+            .then(json => {
                 event.next(json);
             });
 
@@ -46,15 +46,7 @@ export class FetchHttpAdapter implements Http {
      * Performs a request with `get` http method.
      */
     get(url: string, options?: IRequestOptions): EventEmitter {
-        var promise = fetch(url, RequestOptionsWrapper.create(options)),
-            event = new EventEmitter();
-        
-        promise.then(res => res.json())
-            .then(json => { 
-                event.next(json); 
-            });
-
-        return event;
+        return this.request(url, options || <any>{ method: RequestMethods.GET });
     }
 
     /**
@@ -70,7 +62,9 @@ export class FetchHttpAdapter implements Http {
     /**
      * Performs a request with `delete` http method.
      */
-    delete(url: string, options?: IRequestOptions): any { }
+    delete(url: string, options?: IRequestOptions): EventEmitter {
+        return this.request(url, options || <any>{ method: RequestMethods.DELETE });
+    }
 
     /**
      * Performs a request with `patch` http method.

@@ -130,8 +130,17 @@ export class StatusBoardFloating {
 		this.updateNumItems(newNum);
 	}
 
-	updateNumItems(numItems:number){
-		this.config.numItems = numItems || 1;
+	updateNumItems(numItems:string|number){
+		var newNum:number;
+		
+		if(typeof numItems === 'string'){
+			newNum = parseInt(numItems);
+		}
+		else{
+			newNum = numItems;
+		}
+		
+		this.config.numItems = newNum || 1;
 		this.initStatusBoard();
 	}
 
