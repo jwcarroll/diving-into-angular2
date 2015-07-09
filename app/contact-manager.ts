@@ -8,9 +8,11 @@ import {Component, View, bootstrap} from 'angular2/angular2';
 })
 class ContactManager{
 	title: string;
+	name: string;
 	
 	constructor(){
 		this.title = "Contact Manager";
+		this.name = "Josh";
 	}
 }
 
