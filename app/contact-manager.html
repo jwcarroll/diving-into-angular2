@@ -1,25 +1,8 @@
 <h1>Welcome to {{title}}</h1>
 
-<label>Name:</label>
-<input type="text" class="form-control input-lg"
-	#name-ctrl 
-	[value]="name"
-	(keyup)="name = nameCtrl.value">
-	
-<label>Color:</label>
-<input type="text" class="form-control input-lg"
-	#color-ctrl	
-	(keyup)>
-
-<input type="range" min="10" max="300" step="10"
-	#range-ctrl
-	(input)>
-
-<h2>{{rangeCtrl.value + 'px;'}}</h2>
-
-<hr/>
-
-<h2>Hello, my name is <code 
-	[inner-text]="name" 
-	[style.color]="colorCtrl.value"
-	[style.font-size]="rangeCtrl.value + 'px'"></code></h2>
+<div class="row">
+	<h1>Contacts</h1>
+	<div class="col-sm-12">
+		<contact-list></contact-list>
+	</div>
+</div>

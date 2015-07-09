@@ -1,10 +1,12 @@
 import {Component, View, bootstrap} from 'angular2/angular2';
+import {ContactList} from './contacts/contact-list';
 
 @Component({
 	selector:'contact-manager'
 })
 @View({
-	templateUrl:'app/contact-manager.html'
+	templateUrl:'app/contact-manager.html',
+	directives: [ContactList]
 })
 class ContactManager{
 	title: string;

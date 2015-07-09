@@ -1,0 +1,16 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>First</th>
+			<th>Last</th>
+			<th>Twitter</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ng-for="#contact of contacts">
+			<td>{{contact.firstName}}</td>
+			<td>{{contact.lastName}}</td>
+			<td>@{{contact.twitter}}</td>
+		</tr>
+	</tbody>
+</table>
