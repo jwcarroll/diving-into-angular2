@@ -16,15 +16,15 @@
       "Microsoft.AspNet.Mvc.TagHelpers >= 6.0.0-beta4",
       "EntityFramework >= 7.0.0-beta4",
       "EntityFramework.InMemory >= 7.0.0-beta4",
-      "AutoMapper >= 4.0.0-ci1061"
+      "AutoMapper >= 4.0.0-alpha1"
     ],
     "DNX,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": []
   },
   "libraries": {
-    "AutoMapper/4.0.0-ci1061": {
+    "AutoMapper/4.0.0-alpha1": {
       "serviceable": false,
-      "sha": "QxJVQKfBwTSLcLnUw8dIXw8jAuUp9bgwCCGiAElvKb/KcjNReW000cBWR8vpVjgfst6HJP07GR1IT7t7eNkTYA==",
+      "sha": "rvlGuIXTu1pF9NfbCaK6ocDrP9iCRJ8UXfUs5IvU/vfjs/SobQEN+b3b/L7SpqLRL5/glsSSvPDX2wUOTNrOfA==",
       "frameworks": {
         "DNX,Version=v4.5.1": {
           "dependencies": {},
@@ -69,9 +69,9 @@
         }
       },
       "files": [
-        "automapper.4.0.0-ci1061.nupkg",
-        "automapper.4.0.0-ci1061.nupkg.sha512",
-        "automapper.nuspec",
+        "AutoMapper.4.0.0-alpha1.nupkg",
+        "AutoMapper.4.0.0-alpha1.nupkg.sha512",
+        "AutoMapper.nuspec",
         "lib/dnx46/AutoMapper.dll",
         "lib/dnx46/AutoMapper.xml",
         "lib/dnxcore50/AutoMapper.dll",

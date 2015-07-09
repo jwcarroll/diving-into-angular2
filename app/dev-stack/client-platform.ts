@@ -7,12 +7,16 @@ import {ServerPlatform} from './server-platform';
 import {TechLogo} from './tech-logo';
 
 @Component({
-	selector: ['client-platform']
+	selector: 'client-platform'
 })
 @View({
 	template: `
-		<tech-logo [tech]="clientTech"></tech-logo>
-		<router-outlet></router-outlet>
+		<div class="row">
+			<div class="col-sm-4">
+				<tech-logo [tech]="clientTech"></tech-logo>
+			</div>
+			<router-outlet></router-outlet>
+		</div>
 	`,
 	directives: [routerDirectives, TechLogo]
 })

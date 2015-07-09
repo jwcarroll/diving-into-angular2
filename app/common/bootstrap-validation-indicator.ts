@@ -5,8 +5,6 @@ import {RouteParams, RouteConfig, Router} from 'angular2/router';
 import * as _ from 'lodash';
 import * as Rx from 'rx';
 
-declare var Directive;
-
 @Directive({
 	selector:'[bs-validation-indicator]',
 	properties:['ctrlName:bsValidationIndicator'],

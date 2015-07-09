@@ -6,11 +6,13 @@ import {Platform, TechnologyPlatform} from './platform';
 import {TechLogo} from './tech-logo';
 
 @Component({
-	selector: ['database-platform']
+	selector: 'database-platform'
 })
 @View({
 	template: `
-		<tech-logo [tech]="dbTech"></tech-logo>
+		<div class="col-sm-4">
+			<tech-logo [tech]="dbTech"></tech-logo>
+		</div>
 	`,
 	directives: [routerDirectives, TechLogo]
 })

@@ -4,7 +4,7 @@ import {Component, View, NgSwitch, NgSwitchWhen, NgSwitchDefault} from 'angular2
 import {TechnologyPlatform} from './platform';
 
 @Component({
-	selector:['tech-logo'],
+	selector:'tech-logo',
 	properties:['technology: tech']
 })
 @View({

@@ -15,9 +15,15 @@ export enum TechnologyPlatform {
 }
 
 export class Platform {
+	protected techPlatformName:string;
+	
 	constructor(protected routeParams:RouteParams){}
 	
-	init(paramName:string){
-		return TechnologyPlatform[<string>this.routeParams.params[paramName]];
+	init(paramName:string):TechnologyPlatform{
+		var platform = TechnologyPlatform[<string>this.routeParams.params[paramName]];
+		
+		this.techPlatformName = TechnologyPlatform[platform];
+		
+		return platform;
 	}
 }

@@ -31,12 +31,12 @@ export class ContactList{
 	}
 	
 	navigateToContactDetails(contact:IContact): void{
-		this.router.parent.navigate(`/contacts/${(contact || {id:'new'}).id}`);
+		this.router.navigate(`/contacts/${(contact || {id:'new'}).id}`);
 	}
 	
 	addNewContact(event): void{
 		event.preventDefault();
-		this.router.parent.navigate(`/contacts/new`);
+		this.router.navigate(`/contacts/new`);
 	}
 	
 	deleteContact(contact:IContact): void{
