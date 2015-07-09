@@ -13,6 +13,7 @@
     "hover.css": "^2.0.2",
     "jquery": "^2.1.4",
     "lodash": "^3.9.3",
+    "systemjs": "^0.18.4",
     "whatwg-fetch": "^0.9.0"
   },
   "devDependencies": {
