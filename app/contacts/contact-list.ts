@@ -7,7 +7,8 @@ import {ContactCard} from './contact-card';
 import * as _ from 'lodash';
 
 @Component({
-	selector:'contact-list'
+	selector:'contact-list',
+	hostInjector:[ContactsService]
 })
 @View({
 	templateUrl:'app/contacts/contact-list.html',
