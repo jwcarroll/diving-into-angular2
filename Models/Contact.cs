@@ -9,7 +9,7 @@ namespace DivingIntoAngular.Models
         public DbSet<Contact> Contacts { get; set; }
         
         protected override void OnModelCreating(ModelBuilder builder){
-            builder.Entity<Contact>().Key(c => c.Id);
+            builder.Entity<Contact>().Key(c => c.ContactId);
             
             base.OnModelCreating(builder);
         }
@@ -18,7 +18,7 @@ namespace DivingIntoAngular.Models
     public class Contact
     {
         [ScaffoldColumn(false)]
-        public Int32 Id { get; set; }
+        public Int32 ContactId { get; set; }
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public String City { get; set; }
