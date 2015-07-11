@@ -1,4 +1,4 @@
-import {Component, View, bootstrap} from 'angular2/angular2';
+import {Component, View, bootstrap, httpInjectables} from 'angular2/angular2';
 import {ContactList} from './contacts/contact-list';
 
 @Component({
@@ -18,4 +18,6 @@ class ContactManager{
 	}
 }
 
-bootstrap(ContactManager,[]);
+bootstrap(ContactManager,[
+	httpInjectables
+]);
