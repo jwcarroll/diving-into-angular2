@@ -10,9 +10,20 @@
 <div class="row">
 	<div class="col-sm-6" *ng-for="#contact of contacts">
 		<contact-card #cc 
-			[contact]="contact"
-			[class]="{active:cc.isActive}"
-			(delete)="deleteContact(contact)">
+			[contact]="contact" 
+			(cc-view-detail)="navigateToContactDetails(contact)" 
+			(cc-delete)="deleteContact(contact)"
+			[class]="{info:cc.isActive}">
 		</contact-card>
+	</div>
+	<div class="col-sm-12">
+		<div class="media">
+			<a class="pull-left" href="#">
+	        	<img class="media-object dp img-circle" src="/app/content/user-plus.svg" style="width: 100px;height:100px;">
+	    	</a>
+			<div class="media-body">
+				<h4 class="media-heading">Add New<h4>
+			</div>
+		</div>
 	</div>
 </div>

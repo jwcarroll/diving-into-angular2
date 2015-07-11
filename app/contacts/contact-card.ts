@@ -1,29 +1,41 @@
-///<reference path="model.d.ts" />
+/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="model.d.ts" />
 
 import {Component, View, EventEmitter} from 'angular2/angular2';
+import * as _ from 'lodash';
+import * as Rx from 'rx';
 
 @Component({
 	selector:'contact-card',
-	properties:['contact'],
-	events:['delete'],
+	properties:['contact', 'isActive'],
+	events:['ccViewDetail','ccDelete'],
 	host:{
-		'(^mouseover)':"isActive = true",
+		'(^mouseover)':"isActive = true", 
 		'(^mouseout)':"isActive = false"
 	}
 })
 @View({
-	templateUrl:'/app/contacts/contact-card.html'
+	templateUrl:'app/contacts/contact-card.html'
 })
 export class ContactCard {
 	contact:IContact;
-	isActive:boolean = false;
-	delete = new EventEmitter();
-
-	constructor(){
+	isActive:boolean;
+	ccViewDetail = new EventEmitter();
+	ccDelete = new EventEmitter();
 	
+	constructor(){	}
+	
+	triggerDetailEvent(event){
+		event.preventDefault();
+		event.stopPropagation();
+		
+		this.ccViewDetail.next(this.contact);
 	}
 	
-	onDelete(){
-		this.delete.next(this.contact);
+	triggerDeleteEvent(event){
+		event.preventDefault();
+		event.stopPropagation();
+		
+		this.ccDelete.next(this.contact);
 	}
 }
