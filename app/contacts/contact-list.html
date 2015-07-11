@@ -11,7 +11,8 @@
 	<div class="col-sm-6" *ng-for="#contact of contacts">
 		<contact-card #cc 
 			[contact]="contact"
-			[class]="{active:cc.isActive}">
+			[class]="{active:cc.isActive}"
+			(delete)="deleteContact(contact)">
 		</contact-card>
 	</div>
 </div>

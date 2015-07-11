@@ -1,6 +1,7 @@
 import {Component, View, NgFor, CSSClass, Headers} from 'angular2/angular2';
 import {ContactsService} from './contacts-service';
 import {ContactCard} from './contact-card';
+import * as _ from 'lodash';
 
 @Component({
 	selector: 'contact-list',
@@ -21,6 +22,13 @@ export class ContactList {
 		this.contactsService.getContacts()
 			.subscribe((contacts:IContact[]) => {
 				this.contacts = contacts;
+			});
+	}
+	
+	deleteContact(contact:IContact){
+		this.contactsService.deleteContact(contact.contactId)
+			.subscribe(c => {
+				_.remove(this.contacts, {contactId: c.contactId});
 			});
 	}
 }
