@@ -1,14 +1,9 @@
-import {Component, View, NgFor, Http, Headers} from 'angular2/angular2';
-
-interface IContact {
-	contactId: number;
-	firstName: string;
-	lastName: string;
-	twitter: string;
-}
+import {Component, View, NgFor, Headers} from 'angular2/angular2';
+import {ContactsService} from './contacts-service';
 
 @Component({
-	selector: 'contact-list'
+	selector: 'contact-list',
+	hostInjector: [ContactsService]
 })
 @View({
 	templateUrl: '/app/contacts/contact-list.html',
@@ -17,14 +12,12 @@ interface IContact {
 export class ContactList {
 	contacts: IContact[] = [];
 
-	constructor(private http: Http) {
+	constructor(private contactsService: ContactsService) {
 		this.init();
 	}
 
 	init() {
-		this.http.get('/api/contacts')
-			.toRx()
-			.map(res => res.json())
+		this.contactsService.getContacts()
 			.subscribe((contacts:IContact[]) => {
 				this.contacts = contacts;
 			});
