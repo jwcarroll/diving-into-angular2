@@ -2,6 +2,7 @@
 /// <reference path="model.d.ts" />
 
 import {Component, View, NgFor, CSSClass} from 'angular2/angular2';
+import {routerDirectives, Router} from 'angular2/router';
 import {ContactsService} from './contacts-service';
 import {ContactCard} from './contact-card';
 import * as _ from 'lodash';
@@ -12,13 +13,14 @@ import * as _ from 'lodash';
 })
 @View({
 	templateUrl:'app/contacts/contact-list.html',
-	directives:[NgFor, CSSClass, ContactCard]
+	directives:[NgFor, CSSClass, ContactCard, routerDirectives]
 })
 export class ContactList{
 	contacts: IContact[];
 	
 	constructor(
-		private contactsService:ContactsService){
+		private contactsService:ContactsService,
+		private router:Router){
 		this.init();
 	}
 	
@@ -30,7 +32,7 @@ export class ContactList{
 	}
 	
 	navigateToContactDetails(contact:IContact): void{
-		alert(`/contacts/${(contact || {contactId:'new'}).contactId}`);
+		this.router.navigate(`/contacts/${(contact || {contactId:'new'}).contactId}`);
 	}
 	
 	deleteContact(contact:IContact): void{
