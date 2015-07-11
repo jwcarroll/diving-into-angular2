@@ -1,6 +1,17 @@
+<style>
+	contact-card {
+		display: block;
+		border-bottom: 5px dashed transparent;
+	}
+	contact-card.active {
+		border-bottom: 5px dashed black;
+	}
+</style>
 <div class="row">
 	<div class="col-sm-6" *ng-for="#contact of contacts">
-		<contact-card [contact]="contact">
+		<contact-card #cc 
+			[contact]="contact"
+			[class]="{active:cc.isActive}">
 		</contact-card>
 	</div>
 </div>

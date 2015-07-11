@@ -1,4 +1,4 @@
-import {Component, View, NgFor, Headers} from 'angular2/angular2';
+import {Component, View, NgFor, CSSClass, Headers} from 'angular2/angular2';
 import {ContactsService} from './contacts-service';
 import {ContactCard} from './contact-card';
 
@@ -8,7 +8,7 @@ import {ContactCard} from './contact-card';
 })
 @View({
 	templateUrl: '/app/contacts/contact-list.html',
-	directives: [NgFor, ContactCard]
+	directives: [NgFor, ContactCard, CSSClass]
 })
 export class ContactList {
 	contacts: IContact[] = [];
