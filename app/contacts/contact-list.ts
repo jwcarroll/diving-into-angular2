@@ -1,6 +1,7 @@
 import {Component, View, NgFor} from 'angular2/angular2';
 
 interface IContact {
+	contactId:number;
 	firstName:string;
 	lastName:string;
 	twitter:string;
@@ -18,8 +19,9 @@ export class ContactList {
 
 	constructor(){
 		this.contacts = [
-			{firstName:'Josh', lastName:'Carroll', twitter:'jwcarroll'},
-			{firstName:'Dave', lastName:'Baskin', twitter:'dfbaskin'}
+			{ contactId: 1, firstName: 'Josh', lastName: 'Carroll', twitter: 'jwcarroll' },
+			{ contactId: 2, firstName: 'Dave', lastName: 'Baskin', twitter: 'dfbaskin' },
+			{ contactId: 3, firstName: 'Todd', lastName: 'Motto', twitter: 'toddmotto' }
 		];
 	}
 }
