@@ -12,7 +12,7 @@ export class ContactsService {
 	}
 	
 	getContact(contactId:number): Rx.IObservable<IContact> {
-		return this.http.get(`/api/contacts/contactId`)
+		return this.http.get(`/api/contacts/${contactId}`)
 			.toRx().map(r => r.json());
 	}
 		
@@ -26,12 +26,12 @@ export class ContactsService {
 		opts.headers = headers;
 
 		return this.http.request(
-			`/api/contacts/contact.contactId || ''`, 
+			`/api/contacts/${contact.contactId || ''}`, 
 			opts).toRx().map(res => res.json());
 	}
 	
 	deleteContact(contactId:number): Rx.IObservable<IContact> {
-		return this.http.delete(`/api/contacts/contactId`)
+		return this.http.delete(`/api/contacts/${contactId}`)
 			.toRx().map(r => r.json());
 	}
 }
