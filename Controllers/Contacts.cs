@@ -36,7 +36,7 @@ namespace DivingIntoAngular.Controllers
             Contact existingContact = null;
 
             existingContact = await _contactList.Contacts
-               .SingleOrDefaultAsync(c => c.Id == contactId);
+               .SingleOrDefaultAsync(c => c.ContactId == contactId);
 
             if (existingContact == null)
             {
@@ -55,7 +55,7 @@ namespace DivingIntoAngular.Controllers
             await _contactList.SaveChangesAsync();
 
             return Created(
-                Url.Action(nameof(GetContact), new { contactId = contact.Id }),
+                Url.Action(nameof(GetContact), new { contactId = contact.ContactId }),
                 contact
             );
         }
@@ -66,7 +66,7 @@ namespace DivingIntoAngular.Controllers
             Contact existingContact = null;
 
             existingContact = await _contactList.Contacts
-               .SingleOrDefaultAsync(c => c.Id == contactId);
+               .SingleOrDefaultAsync(c => c.ContactId == contactId);
 
             if (existingContact == null)
             {
@@ -87,7 +87,7 @@ namespace DivingIntoAngular.Controllers
             Contact existingContact = null;
 
             existingContact = await _contactList.Contacts
-               .SingleOrDefaultAsync(c => c.Id == contactId);
+               .SingleOrDefaultAsync(c => c.ContactId == contactId);
 
             if (existingContact == null)
             {
