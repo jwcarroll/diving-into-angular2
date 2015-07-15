@@ -15,13 +15,13 @@ interface ITimings{
 }
 
 var dimensions = {
-	rows: 20,
-	cols: 30
+   rows: 20,
+   cols: 50
 };
 
 var timeouts = {
-	min:100,
-	max:500
+   min: 100,
+   max: 300
 }
 
 var statuses = [
@@ -43,11 +43,14 @@ var requestAnimationFrame = window.requestAnimationFrame || window['mozRequestAn
 	directives: [NgFor, NgIf]
 })
 export class StatusBoard {
-	statusBoard: IStatus[][] = [];
+	statusBoard: Status[][] = [];
 	updateBoardCallback: () => void;
-	statusUpdates: number = 0;
+	
 	timings:ITimings = {};
 	
+	updatesTimer = new Timer();
+	
+	private _statusUpdates: number = 0;
 	private _maxStatusUpdates: number = dimensions.cols * dimensions.rows;
 
 	constructor() {
@@ -57,9 +60,24 @@ export class StatusBoard {
 		//requestAnimationFrame(this.updateBoardCallback);
 	}
 
+	get statusUpdates(){
+		return this._statusUpdates;
+	}
+	
+	set statusUpdates(newVal:number){
+		this._statusUpdates = newVal;
+		
+		if(this._statusUpdates >= this._maxStatusUpdates){
+			this.updatesTimer.stop();
+		}
+	}
+
 	initStatusBoard() {
 		var timer = new Timer();
 		timer.start();
+		
+		
+		this.updatesTimer.start();
 		
 		for (var row = 0; row < dimensions.rows; row++) {
 			for (var col = 0; col < dimensions.cols; col++) {
@@ -67,7 +85,7 @@ export class StatusBoard {
 					this.statusBoard[row] = [];
 				}
 
-				this.statusBoard[row][col] = Status.defaultStatus;
+				this.statusBoard[row][col] = new Status();
 				this.updateCellAsync(row, col);
 			}
 		}
@@ -79,17 +97,18 @@ export class StatusBoard {
 	updateCellAsync(row: number, col: number) {
 		var timeout = getRandomInt(timeouts.min, timeouts.max);
 
-		setTimeout(() => {
-			this.statusBoard[row][col] = Status.createStatus();
-			this.statusUpdates += 1;
-		}, timeout);
+		this.statusBoard[row][col]
+			.update()
+			.then(() => {
+				this.statusUpdates += 1;
+			});
 	}
 
 	updateBoard() {
 		var row = getRandomInt(0, dimensions.rows);
 		var col = getRandomInt(0, dimensions.cols);
 
-		this.statusBoard[row][col] = Status.createStatus();
+		this.statusBoard[row][col] = new Status();
 
 		this.statusUpdates += 1;
 
@@ -103,16 +122,44 @@ function getRandomInt(min: number, max: number): number {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
-class Status {
-	static defaultStatus = <IStatus>{ val: 0, class: '' };
+class Status implements IStatus {
+   private _val: number;
+   private _class: string;
+   private _updating: boolean;
 
-	static createStatus(): IStatus {
-		var status: any = {
-			val: getRandomInt(0, statuses.length)
-		};
+   constructor(status: IStatus = Status.createDefaultStatus()) {
+      this._val = status.val;
+      this._class = statuses[status.val];
+   }
 
-		status.class = statuses[status.val];
+   get val() {
+      return this._val;
+   }
 
-		return status;
-	}
+   get class() {
+      return this._class;
+   }
+
+   get updating(){
+      return this._updating;
+   }
+
+   update() {
+      var timeout = getRandomInt(timeouts.min, timeouts.max);
+  
+  	  return new Promise(res => {
+			this._updating = true;
+
+		    setTimeout(() => {
+		         this._val = getRandomInt(0, statuses.length);
+		         this._class = statuses[this._val];
+				 this._updating = false;
+				 res();
+			}, timeout);
+		});
+   }
+
+   static createDefaultStatus() {
+      return <IStatus>{ val: 0, class: '' };
+   }
 }

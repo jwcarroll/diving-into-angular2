@@ -4,14 +4,20 @@
 	}
 </style>
 <div class="row">
-	<div class="col-sm-6">
+	<div class="col-sm-4">
 		<h1>Status Updates:
 			<small>{{statusUpdates}}</small>
 		</h1>
 	</div>
-	<div class="col-sm-6">
+	<div class="col-sm-4">
 		<h1>Init Time:
 			<small>{{timings.init.totalMilliseconds()}}</small>
+		</h1>
+	</div>
+	<div class="col-sm-4">
+		<h1>Run Time:
+			<i *ng-if="updatesTimer.isStarted" class="fa fa-cog fa-spin"></i>
+			<small *ng-if="updatesTimer.isStopped">{{updatesTimer.elapsed().totalMilliseconds()}}</small>
 		</h1>
 	</div>
 </div>
@@ -20,7 +26,10 @@
 		<table class="table table-striped table-condensed">
 			<tbody>
 				<tr *ng-for="#row of statusBoard">
-					<td *ng-for="#col of row" [class-name]="col.class">{{col.val}}</td>
+					<td *ng-for="#col of row" [class-name]="col.class">
+						<i *ng-if="col.updating" class="fa fa-cog fa-spin"></i>
+						<span *ng-if="!col.updating">{{col.val}}</span>
+					</td>
 				</tr>
 			</tbody>
 		</table>

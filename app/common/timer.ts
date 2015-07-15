@@ -4,6 +4,14 @@ export class Timer {
   private _startTime: Date;
   private _endTime: Date;
 
+  get isStarted(){
+    return !this.isStopped && (typeof this._startTime !== "undefined");
+  }
+  
+  get isStopped(){
+    return (typeof this._endTime !== "undefined");
+  }
+
   start() {
     this._startTime = new Date();
   }
